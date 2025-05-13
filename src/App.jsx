@@ -1,21 +1,56 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { createBrowserRouter, RouterProvider} from "react-router";
+import "./App.css";
+import Root from "./pages/Root";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import BookList from "./components/Books/BookList";
+import AddBookForm from "./pages/AddBookForm";
+import Example from "./pages/Example";
+import Todos from "./pages/Todos";
+import AxiosExample from "./pages/AxiosExample";
 
-function App() {
-  const [count, setCount] = useState(0)
+const router = createBrowserRouter([
+  {
+    path: "",
+    element: <Root />,
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: "about",
+        element: <About />,
+      },
+      {
+        path: "books",
+        element: <BookList />,
+      },
+      {
+        path: "addbook",
+        element: <AddBookForm />,
+      },
+      {
+        path: "example",
+        element: <Example />,
+      },
+      {
+        path: "todos",
+        element: <Todos />,
+      },
+      {
+        path: "axiosexample",
+        element: <AxiosExample />,
+      },
+    ],
+  },
+])
 
+const App = () => {
   return (
     <>
-      <p className="read-the-docs">
-        Good morning, good morning,<br />
-        Good morning to you!<br />
-        Good morning good morning,<br />
-        I am glad to see you!😉🤗<br />
-      </p>
+  <RouterProvider  router={router}/>
     </>
   )
-}
-
-export default App
+};
+export default App;
